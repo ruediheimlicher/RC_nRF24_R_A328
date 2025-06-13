@@ -59,6 +59,8 @@ byte aux2;
 
 Signal data;
 
+#define MITTE 170
+
 // SMD
 #define S0  PD0     // PD0 // YAW
 #define S1  PD1     // PD1 // PITCH
@@ -90,9 +92,9 @@ void ResetData()
 {
 
 data.throttle = 0;   // Define the inicial value of each data input. 
-data.roll = 127;
-data.pitch = 127;
-data.yaw = 127;
+data.roll = MITTE;
+data.pitch = MITTE;
+data.yaw = MITTE;
 data.aux1 = 0;                                              
 data.aux2 = 0;
 resetcounter++;                                               
@@ -120,6 +122,7 @@ uint8_t initradio(void)
     //Serial.println("Radio failure detected, restarting radio");
     //lcd_gotoxy(10,9);
     //lcd_puts("err");
+
     return 0;
   }
   else
@@ -148,7 +151,7 @@ void setup()
   DDRC |= (1<<PC3);
 
  // DDRB |= (1<<0);
- //Serial.begin(115200);
+ //Serial.begin(9600);
   pinMode(LOOPLED,OUTPUT);
   //pinMode(2,INPUT); // IRQ
   //pinMode(A0,OUTPUT); // CE
@@ -227,6 +230,7 @@ void loop()
     impulscounter++;
     digitalWrite(LOOPLED, ! digitalRead(LOOPLED));
     //digitalWrite(A0, ! digitalRead(A0))
+    //Serial.println(data.yaw);
    
    /*
     lcd_gotoxy(0,1);
@@ -285,6 +289,7 @@ void loop()
       ResetData();  // Signal lost.. Reset data
     }
   } 
+  
   //data.roll = (impulscounter & 0xFF );//& 0xFF00) >> 8;
 
   // map: 
@@ -307,5 +312,7 @@ void loop()
   ch4.writeMicroseconds(ch_width_4);
   ch5.writeMicroseconds(ch_width_5);
   //ch6.writeMicroseconds(ch_width_6); 
+
+
 }
 
