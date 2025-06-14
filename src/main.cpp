@@ -94,7 +94,7 @@ void ResetData()
 data.throttle = 0;   // Define the inicial value of each data input. 
 data.roll = MITTE;
 data.pitch = MITTE;
-data.yaw = MITTE;
+data.yaw = MITTE+30;
 data.aux1 = 0;                                              
 data.aux2 = 0;
 resetcounter++;                                               
