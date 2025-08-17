@@ -59,7 +59,7 @@ byte aux2;
 
 Signal data;
 
-#define MITTE 170
+#define MITTE 127
 
 // SMD
 #define S0  PD0     // PD0 // YAW
@@ -94,7 +94,7 @@ void ResetData()
 data.throttle = 0;   // Define the inicial value of each data input. 
 data.roll = MITTE;
 data.pitch = MITTE;
-data.yaw = MITTE+30;
+data.yaw = MITTE+25;
 data.aux1 = 0;                                              
 data.aux2 = 0;
 resetcounter++;                                               
@@ -139,6 +139,7 @@ uint8_t initradio(void)
 
 void setup() 
 {
+  
  /*
   LCD_DDR |= (1<<LCD_RSDS_PIN);
   LCD_DDR |= (1<<LCD_ENABLE_PIN);
