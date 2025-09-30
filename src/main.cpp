@@ -104,17 +104,23 @@ uint8_t initradio(void)
 {
   ResetData();                   // Configure the NRF24 module  | NRF24 Modül konfigürasyonu
   radio.begin();
+  
   radio.openReadingPipe(1,pipeIn);
+  
   //radio.setChannel(100);
   radio.setChannel(124);
+  
   radio.setAutoAck(false);
+  
   //radio.setDataRate(RF24_250KBPS);    // The lowest data rate value for more stable communication  | Daha kararlı iletişim için en düşük veri hızı.
   radio.setDataRate(RF24_2MBPS); // Set the speed of the transmission to the quickest available
+  
   radio.setPALevel(RF24_PA_MAX);                           // Output power is set for maximum |  Çıkış gücü maksimum için ayarlanıyor.
   radio.setPALevel(RF24_PA_MIN); 
   radio.setPALevel(RF24_PA_MAX); 
   
   radio.startListening(); 
+  
    if (radio.failureDetected) 
   {
     radio.failureDetected = false;
